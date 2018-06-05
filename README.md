@@ -12,12 +12,19 @@ UI: tkinter
 
 生成脚本
 
-```py
-pyinstaller --onedir -y -w app-script.py
-pyinstaller --onedir -y app-script.spec
+Mac系统打包发布成.app包（文件夹包形式）
+```shell
+pyinstaller --onedir -y -w main-script.py
+pyinstaller --onedir -y main-script.spec
+
 ```
 
-生成的app文字不清晰解决办法:
+Windows系统也可以使用上述命令，这样会生成一个带各种dll和依赖文件的文件夹，可以使用-F指令把应用打包成一个独立的exe文件
+```shell
+pyinstaller --onedir -y -w app-script.py
+```
+
+针对Mac生成的app文字不清晰解决办法:
 修改spec文件: 添加info_plist属性
 设置NSHighResolutionCapable值为True
 
@@ -38,5 +45,4 @@ app = BUNDLE(coll,
              })
 ```
 
-参考文档：[PyGobject详解](https://blog.csdn.net/column/details/pygobject.html)、
 
