@@ -5,18 +5,18 @@
 from tkinter.filedialog import *
 from tkinter import *
 
-
-def opensdialog():
-    filename = askopenfilename()
-    label_filename['text'] = filename
-
-
 root = Tk()
+# root.geometry('600x200')
 
-label_filename = Label(text=str('这里显示选中的文件路径'))
-label_filename.pack()
+selectedFile = Label(text=str('这里显示选中的文件路径'))
+selectedFile.pack()
 
-button_opensdialog = Button(text=str('打开'), command=opensdialog)
-button_opensdialog.pack()
+
+def openFileDialog():
+    filename = askopenfilename()
+    selectedFile['text'] = filename
+
+buttonOpen = Button(text=str('打开'), command=openFileDialog)
+buttonOpen.pack()
 
 root.mainloop()
