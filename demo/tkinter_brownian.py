@@ -5,19 +5,18 @@
 # bug, 退出异常, 不能退出
 # 下面我将给大家介绍有关python中thread来实现布朗运动的一个例子
 
-
-from tkinter import *
 import random
+import sys
 import threading
 import time
-import sys
+from tkinter import Tk, Canvas
 
 #画布大小
-WIDTH = 400
-HEIGHT = 300
-SIGMA = 10
+WIDTH = 500
+HEIGHT = 500
+SIGMA = 50
 BUZZ = 2
-RADIUS = 2
+RADIUS = 3
 LAMBDA = 10
 FILL = 'red'
 
