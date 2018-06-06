@@ -1,3 +1,7 @@
+#!/usr/bin/env python3
+# -*- coding: UTF-8 -*-
+# 画小猪佩奇
+
 from turtle import *
 
 
