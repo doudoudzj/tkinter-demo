@@ -1,7 +1,6 @@
+#!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
-#python tkinter menu
-#python version 3.3.2
-#EN = Window 7
+# python tkinter menu
 
 from tkinter import *
 '''
@@ -13,7 +12,6 @@ from tkinter import *
         其他的菜单项，当点击时，会打印出相应菜单项的名称
 '''
 
-__author__ = 'Hongten'
 MENU_ITEMS = ['File', 'Edit', 'Format', 'Run', 'Options', 'Windows', 'Help']
 #菜单File中的选项
 MENU_FILE_ITEMS = [
@@ -89,7 +87,7 @@ def set_tk_title(tk, title):
     if title is not None and title != '':
         tk.title(title)
     else:
-        tk.title('Hongten v1.0')
+        tk.title('唐钰豆豆')
 
 
 def set_tk_geometry(tk, size):
@@ -288,7 +286,7 @@ root = get_tk()
 #设置窗口大小
 set_tk_geometry(root, '')
 #设置窗口title
-set_tk_title(root, 'Python 3.3.2 Shell')
+set_tk_title(root, '多个菜单示例')
 #获取菜单对象
 menubar = get_menu(root)
 #初始化菜单

@@ -1,7 +1,8 @@
 from turtle import *
 
 
-def nose(x, y):  #鼻子
+#鼻子
+def nose(x, y):
     penup()  #提起笔
     goto(x, y)  #定位
     pendown()  #落笔，开始画
@@ -42,7 +43,8 @@ def nose(x, y):  #鼻子
     end_fill()
 
 
-def head(x, y):  #头
+#头
+def head(x, y):
     color((255, 155, 192), "pink")
     penup()
     goto(x, y)
@@ -74,7 +76,8 @@ def head(x, y):  #头
     end_fill()
 
 
-def ears(x, y):  #耳朵
+#耳朵
+def ears(x, y):
     color((255, 155, 192), "pink")
     penup()
     goto(x, y)
@@ -99,7 +102,8 @@ def ears(x, y):  #耳朵
     end_fill()
 
 
-def eyes(x, y):  #眼睛
+#眼睛
+def eyes(x, y):
     color((255, 155, 192), "white")
     penup()
     setheading(90)
@@ -142,7 +146,8 @@ def eyes(x, y):  #眼睛
     end_fill()
 
 
-def cheek(x, y):  #腮
+#腮
+def cheek(x, y):
     color((255, 155, 192))
     penup()
     goto(x, y)
@@ -153,7 +158,8 @@ def cheek(x, y):  #腮
     end_fill()
 
 
-def mouth(x, y):  #嘴
+#嘴
+def mouth(x, y):
     color(239, 69, 19)
     penup()
     goto(x, y)
@@ -163,7 +169,8 @@ def mouth(x, y):  #嘴
     circle(40, 80)
 
 
-def setting():  #参数设置
+#参数设置
+def setting():
     pensize(4)
     hideturtle()  #使乌龟无形（隐藏）
     colormode(255)  #将其设置为1.0或255.随后 颜色三元组的r，g，b值必须在0 .. cmode范围内
@@ -172,6 +179,7 @@ def setting():  #参数设置
     speed(10)
 
 
+# 主程序
 def main():
     setting()  #画布、画笔设置
     nose(-100, 100)  #鼻子

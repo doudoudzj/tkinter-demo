@@ -41,7 +41,7 @@ class LoginPage(Frame):
 
 
 root = Tk()
-root.title('小程序')
+root.title('登陆')
 width = 280
 height = 200
 screenwidth = root.winfo_screenwidth()
