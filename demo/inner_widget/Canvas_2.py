@@ -1,6 +1,11 @@
+#!/usr/bin/env python3
+# -*- coding: UTF-8 -*-
+# 控件: Canvas
+
 from tkinter import *
 
 root = Tk()
+
 canvas = Canvas(root)
 canvas.pack()
 canvas.config(width=500, height=500)

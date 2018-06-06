@@ -23,6 +23,7 @@ t = Text(root)
 t.insert(1.0, 'hello\n')
 t.insert(END, 'hello000000\n')
 t.insert(END, 'nono')
+t.insert(END, ' this is my string')
 t.pack()
 
 root.mainloop()

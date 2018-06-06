@@ -21,6 +21,7 @@ class MainWindow:
 
     def __init__(self):
         self.frame = Tk()
+        self.frame.title('对话框')
 
         self.button1 = Button(self.frame, text="button1", width=10, height=5)
         self.button2 = Button(self.frame, text="button2", width=10, height=5)

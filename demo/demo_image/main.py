@@ -8,7 +8,7 @@ from tkinter import *
 from PIL import Image, ImageTk
 
 
-class Window(Frame):
+class App(Frame):
     def __init__(self, master=None):
 
         Frame.__init__(self, master)
@@ -42,7 +42,7 @@ class Window(Frame):
         exit()
 
     def showImg(self):
-        load = Image.open('20170507214352664.png')  # 我图片放桌面上
+        load = Image.open('image.gif')
         render = ImageTk.PhotoImage(load)
 
         img = Label(self, image=render)
@@ -56,5 +56,5 @@ class Window(Frame):
 
 root = Tk()
 root.geometry("400x300")
-app = Window(root)
+app = App(root)
 root.mainloop()
