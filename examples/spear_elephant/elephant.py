@@ -1,4 +1,6 @@
-#python elephant
+#!/usr/bin/env python3
+# -*- coding: UTF-8 -*-
+# python elephant
 
 #Import Modules
 import os, pygame
@@ -28,6 +30,7 @@ def load_image(name, colorkey=None):
 
 def load_sound(name):
     '''加载声音'''
+
     class NoneSound:
         def play(self):
             pass
