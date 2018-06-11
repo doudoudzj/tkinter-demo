@@ -15,29 +15,35 @@ def refresh():
 
 requests.session()
 r = requests.get('http://wthrcdn.etouch.cn/WeatherApi?citykey=101020100')
-#print(r.status_code)
+print(r.status_code)
 
 soup = BeautifulSoup(r.text)
-#print(soup.prettify())
+# print(soup.prettify())
 
 a = soup.find_all('city')
 city = a[0].get_text()
 print(a[0].get_text())
+
 a = soup.find_all('wendu')
 wendu = a[0].get_text()
 print('温度为：', a[0].get_text())
+
 a = soup.find_all('shidu')
 shidu = a[0].get_text()
 print('湿度为：', a[0].get_text())
+
 a = soup.find_all('fengli')
 fengli = a[0].get_text()
 print('风力：', a[0].get_text())
+
 a = soup.find_all('fengxiang')
 fengxiang = a[0].get_text()
 print('风向：', a[0].get_text())
+
 a = soup.find_all('quality')
 quality = a[0].get_text()
 print('空气质量：', a[0].get_text())
+
 a = soup.find_all('pm25')
 pm25 = a[0].get_text()
 print('PM2.5：', a[0].get_text())
@@ -56,10 +62,12 @@ with open(filename, 'w', encoding='utf8') as f:
 
 # 程序
 gui = Tk()
-gui.title("天气查询")
-gui.geometry('400x320')
+gui.title('天气查询')
+# gui.geometry('400x320')
+gui.minsize(300, 320)
+# gui.maxsize(400, 320)
 
-l_da = Label(gui, text="日期:" + date_time, font='Helvetica -18')
+l_da = Label(gui, text='日期:' + date_time, font='Helvetica -18')
 l_da.pack(side=TOP)
 l_chengshi = Label(
     gui, text='城市:' + city, font='Arial -18', width=20, height=1)
@@ -83,7 +91,7 @@ l_pm = Label(
     gui, text='PM2.5:' + pm25, font='Helvetica -18', width=20, height=1)
 l_pm.pack(side=TOP)
 
-ref = Button(gui,text = "更新",font = 'Helvetica -18',command = refresh,activeforeground = 'white',\
+ref = Button(gui,text = '更新',font = 'Helvetica -18',command = refresh,activeforeground = 'white',\
              activebackground = 'green')
 ref.pack(side=TOP)
 

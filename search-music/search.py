@@ -4,11 +4,9 @@
 
 import requests, bs4
 
-search_index = 'http://so.5nd.com'
-
 
 def searchMusic(k):
-    response = requests.get(search_index + '/k_' + k)
+    response = requests.get('http://so.5nd.com/k_' + k)
     soup = bs4.BeautifulSoup(response.text)
     aList = soup.select('ul.mulist a[href^=http://www.5nd.com/ting/]')
     url = []
