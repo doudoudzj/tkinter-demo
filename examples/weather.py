@@ -63,9 +63,9 @@ with open(filename, 'w', encoding='utf8') as f:
 # 程序
 gui = Tk()
 gui.title('天气查询')
-# gui.geometry('400x320')
+gui.geometry('300x320')
 gui.minsize(300, 320)
-# gui.maxsize(400, 320)
+gui.resizable(False, False)
 
 l_da = Label(gui, text='日期:' + date_time, font='Helvetica -18')
 l_da.pack(side=TOP)
