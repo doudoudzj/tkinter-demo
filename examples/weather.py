@@ -15,6 +15,7 @@ def refresh():
 
 requests.session()
 r = requests.get('http://wthrcdn.etouch.cn/WeatherApi?citykey=101020100')
+# r = requests.get('http://wthrcdn.etouch.cn/WeatherApi?citykey=101180711')
 print(r.status_code)
 
 soup = BeautifulSoup(r.text)
@@ -65,7 +66,7 @@ gui = Tk()
 gui.title('天气查询')
 gui.geometry('300x320')
 gui.minsize(300, 320)
-gui.resizable(False, False)
+# gui.resizable(False, False)
 
 l_da = Label(gui, text='日期:' + date_time, font='Helvetica -18')
 l_da.pack(side=TOP)
@@ -93,6 +94,6 @@ l_pm.pack(side=TOP)
 
 ref = Button(gui,text = '更新',font = 'Helvetica -18',command = refresh,activeforeground = 'white',\
              activebackground = 'green')
-ref.pack(side=TOP)
+ref.pack(side=RIGHT)
 
 gui.mainloop()

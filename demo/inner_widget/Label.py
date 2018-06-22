@@ -22,6 +22,7 @@ l = Label(
     mainWindow,
     text='标签显示的文本',
     bg='green',
+    fg='#fff',
     font=("Arial", 12),
     width=50,
     height=2)
