@@ -1,10 +1,10 @@
-#!/usr/bin/python3
+#!/usr/bin/env python3
+# -*- coding: UTF-8 -*-
 
 # https://medium.com/@elan_73479/python-tkinter-module-tutorial-1-b1c097773f18
 # https://medium.com/@elan_73479/python-tkinter-tutorial-4-making-a-animation-in-canvas-ff5801358e4e
 # https://medium.com/@elan_73479/python-tkinter-tutorial-2-making-a-very-simple-login-889295115981
 # https://medium.com/@elan_73479/python-tkinter-tutorial-3-radiobuttons-canvas-and-more-d38a0f457ff6
-
 
 import tkinter as gui
 import time

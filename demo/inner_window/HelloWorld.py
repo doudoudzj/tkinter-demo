@@ -2,15 +2,15 @@
 # -*- coding: utf-8 -*-
 
 import tkinter
-from tkinter.constants import *
 
-tk = tkinter.Tk()
+window = tkinter.Tk()
+window.title('Hello World')
+window.geometry("200x200+100+100")
 
-frame = tkinter.Frame(tk, relief=RIDGE, borderwidth=2)
-frame.pack(fill=BOTH, expand=10)
-label = tkinter.Label(frame, text="Hello, World")
-label.pack(fill=X, expand=1)
-button = tkinter.Button(frame, text="Exit", command=tk.destroy)
-button.pack(side=BOTTOM)
+label = tkinter.Label(window, text="Hello, World")
+label.pack(fill=tkinter.BOTH, expand=1)
 
-tk.mainloop()
+button = tkinter.Button(window, text="Exit", command=window.destroy)
+button.pack(side=tkinter.BOTTOM)
+
+window.mainloop()
