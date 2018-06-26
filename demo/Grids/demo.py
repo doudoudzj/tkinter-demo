@@ -1,6 +1,6 @@
 # !/usr/bin/env python3
 # -*- coding: UTF-8 -*-
-# grid几何布局管理器
+# Grid几何布局管理器
 
 import tkinter as gui
 
