@@ -2,11 +2,11 @@
 # -*- coding: UTF-8 -*-
 # 模拟画板Sketchpad
 
-import tkinter
+import tkinter as gui
 
-root = tkinter.Tk()
+root = gui.Tk()
 
-w = tkinter.Canvas(root, width=600, height=600)
+w = gui.Canvas(root, width=600, height=600)
 
 w.pack()
 
@@ -19,6 +19,6 @@ def paint(event):
 
 w.bind("<B1-Motion>", paint)
 
-tkinter.Label(root, text="使用鼠标左键开始画图").pack(side=tkinter.BOTTOM)
+gui.Label(root, text="使用鼠标左键开始画图").pack(side=gui.BOTTOM)
 
-tkinter.mainloop()
+gui.mainloop()
