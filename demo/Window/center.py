@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# 窗口居于 屏幕 正中央
+# 窗口居中显示
 
 import tkinter as tk
 
@@ -21,6 +21,6 @@ def center_window(f, w, h):
     f.geometry('%dx%d+%d+%d' % (w, h, x, y))
 
 
-center_window(window, 500, 500)
+center_window(window, 400, 400)
 
 window.mainloop()
