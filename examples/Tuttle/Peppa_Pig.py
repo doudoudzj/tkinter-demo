@@ -5,7 +5,7 @@
 from turtle import *
 
 
-#鼻子
+# 鼻子
 def nose(x, y):
     penup()  #提起笔
     goto(x, y)  #定位
@@ -47,7 +47,7 @@ def nose(x, y):
     end_fill()
 
 
-#头
+# 头
 def head(x, y):
     color((255, 155, 192), "pink")
     penup()
@@ -80,7 +80,7 @@ def head(x, y):
     end_fill()
 
 
-#耳朵
+# 耳朵
 def ears(x, y):
     color((255, 155, 192), "pink")
     penup()
@@ -106,7 +106,7 @@ def ears(x, y):
     end_fill()
 
 
-#眼睛
+# 眼睛
 def eyes(x, y):
     color((255, 155, 192), "white")
     penup()
@@ -150,7 +150,7 @@ def eyes(x, y):
     end_fill()
 
 
-#腮
+# 腮
 def cheek(x, y):
     color((255, 155, 192))
     penup()
@@ -162,7 +162,7 @@ def cheek(x, y):
     end_fill()
 
 
-#嘴
+# 嘴
 def mouth(x, y):
     color(239, 69, 19)
     penup()
@@ -173,11 +173,111 @@ def mouth(x, y):
     circle(40, 80)
 
 
-#参数设置
+# 身体
+def body(x, y):
+    color("red", (255, 99, 71))
+    penup()
+    goto(x, y)
+    pendown()
+    begin_fill()
+    setheading(-130)
+    circle(100, 10)
+    circle(300, 30)
+    setheading(0)
+    forward(230)
+    setheading(90)
+    circle(300, 30)
+    circle(100, 3)
+    color((255, 155, 192), (255, 100, 100))
+    setheading(-135)
+    circle(-80, 63)
+    circle(-150, 24)
+    end_fill()
+
+
+# 手
+def hands(x, y):
+    color((255, 155, 192))
+    penup()
+    goto(x, y)
+    pendown()
+    setheading(-160)
+    circle(300, 15)
+    penup()
+    setheading(90)
+    forward(15)
+    setheading(0)
+    forward(0)
+    pendown()
+    setheading(-10)
+    circle(-20, 90)
+
+    penup()
+    setheading(90)
+    forward(30)
+    setheading(0)
+    forward(237)
+    pendown()
+    setheading(-20)
+    circle(-300, 15)
+    penup()
+    setheading(90)
+    forward(20)
+    setheading(0)
+    forward(0)
+    pendown()
+    setheading(-170)
+    circle(20, 90)
+
+
+# 脚
+def foot(x, y):
+    pensize(10)
+    color((240, 128, 128))
+    penup()
+    goto(x, y)
+    pendown()
+    setheading(-90)
+    forward(40)
+    setheading(-180)
+    color("black")
+    pensize(15)
+    fd(20)
+
+    pensize(10)
+    color((240, 128, 128))
+    penup()
+    setheading(90)
+    forward(40)
+    setheading(0)
+    forward(90)
+    pendown()
+    setheading(-90)
+    forward(40)
+    setheading(-180)
+    color("black")
+    pensize(15)
+    fd(20)
+
+
+# 尾巴
+def tail(x, y):
+    pensize(4)
+    color((255, 155, 192))
+    penup()
+    goto(x, y)
+    pendown()
+    seth(0)
+    circle(70, 20)
+    circle(10, 330)
+    circle(70, 30)
+
+
+# 参数设置
 def setting():
     pensize(4)
-    hideturtle()  #使乌龟无形（隐藏）
-    colormode(255)  #将其设置为1.0或255.随后 颜色三元组的r，g，b值必须在0 .. cmode范围内
+    hideturtle()  # 使乌龟无形（隐藏）
+    colormode(255)  # 将其设置为1.0或255.随后 颜色三元组的r，g，b值必须在0 .. cmode范围内
     color((255, 155, 192), "pink")
     setup(840, 500)
     speed(10)
@@ -185,13 +285,17 @@ def setting():
 
 # 主程序
 def main():
-    setting()  #画布、画笔设置
-    nose(-100, 100)  #鼻子
-    head(-69, 167)  #头
-    ears(0, 160)  #耳朵
-    eyes(0, 140)  #眼睛
-    cheek(80, 10)  #腮
-    mouth(-20, 30)  #嘴
+    setting()  # 画布、画笔设置
+    nose(-100, 100)  # 鼻子
+    head(-69, 167)  # 头
+    ears(0, 160)  # 耳朵
+    eyes(0, 140)  # 眼睛
+    cheek(80, 10)  # 腮
+    mouth(-20, 30)  # 嘴
+    body(-32, -8)  # 身体
+    hands(-56, -45)  # 手
+    foot(2, -177)  # 脚
+    tail(148, -155)  # 尾巴
     done()
 
 
