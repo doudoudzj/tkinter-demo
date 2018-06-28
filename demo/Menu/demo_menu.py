@@ -8,7 +8,8 @@ window = gui.Tk()
 window.title("菜单演示")
 window.option_add('*tearOff', False)
 
-menuBar = gui.Menu(window)  # 创建菜单栏
+# 创建菜单栏, 实质就是菜单项, 和子菜单性质一样, 只是依据上下级关系关联起来的
+menuBar = gui.Menu(window)  
 
 window.config(menu=menuBar)  # 设置窗体的菜单栏
 
@@ -69,5 +70,8 @@ test.add_command(label='退出', command=exitWindow)
 test.add_separator()  # 分割线
 test.add_command(label='新建窗口', command=createWindow)
 test.add_command(label='切换菜单', command=switchMenu)
+
+# 禁用某个菜单
+test.entryconfigure(0, state='disabled')
 
 window.mainloop()
