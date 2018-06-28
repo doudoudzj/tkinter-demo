@@ -10,21 +10,3 @@ Tk（根窗口）和Toplevel（顶级窗口）的方法：
 
 注意：并非所有操作系统均完全支持下方所有方法的实现。
 
-
-
-
-
-
-
-
-| 内置函数 | 说明 |      |
-| :--------------- | ---- | ---- |
-| create_rectangle | 矩形 |      |
-| create_oval | 椭圆 |      |
-| create_arc | 圆弧 |      |
-| create_polygon | 多边形 | |
-| create_line | 线段 | |
-| create_text | 文本 | |
-| create_bitmap | 位图 | |
-| create_image | 图片 | |
-
