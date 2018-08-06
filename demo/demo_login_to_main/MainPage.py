@@ -1,4 +1,3 @@
-
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
 # 主界面函数MainPage.py
@@ -11,6 +10,7 @@ class MainPage(object):
     def __init__(self, master=None):
         self.root = master  #定义内部变量root
         self.root.geometry('%dx%d' % (600, 400))  #设置窗口大小
+        self.initMenu()
         self.createPage()
 
     def createPage(self):
@@ -18,13 +18,7 @@ class MainPage(object):
         self.queryPage = QueryFrame(self.root)
         self.countPage = CountFrame(self.root)
         self.aboutPage = AboutFrame(self.root)
-        self.inputPage.pack()  #默认显示数据录入界面
-        menubar = Menu(self.root)
-        menubar.add_command(label='数据录入', command=self.inputData)
-        menubar.add_command(label='查询', command=self.queryData)
-        menubar.add_command(label='统计', command=self.countData)
-        menubar.add_command(label='关于', command=self.aboutDisp)
-        self.root['menu'] = menubar  # 设置菜单栏
+        self.aboutPage.pack()  #默认显示数据录入界面
 
     def inputData(self):
         self.inputPage.pack()
@@ -49,3 +43,13 @@ class MainPage(object):
         self.queryPage.pack_forget()
         self.countPage.pack_forget()
         self.aboutPage.pack()
+
+    def initMenu(self):
+        menubar = Menu(self.root)
+        testmenu = Menu(menubar, tearoff=0)
+        menubar.add_cascade(label="测试", menu=testmenu)
+        testmenu.add_command(label='数据录入', command=self.inputData)
+        testmenu.add_command(label='查询', command=self.queryData)
+        testmenu.add_command(label='统计', command=self.countData)
+        testmenu.add_command(label='关于', command=self.aboutDisp)
+        self.root['menu'] = menubar  # 设置菜单栏

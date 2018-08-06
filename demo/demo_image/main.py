@@ -5,6 +5,7 @@
 # https://blog.csdn.net/u011541946/article/details/71374512
 
 from tkinter import *
+from os import path
 from PIL import Image, ImageTk
 
 
@@ -42,7 +43,9 @@ class App(Frame):
         exit()
 
     def showImg(self):
-        load = Image.open('image.gif')
+        d = path.dirname(__file__)  #返回当前文件所在的目录
+        filename = d + '/image.gif'
+        load = Image.open(filename)
         render = ImageTk.PhotoImage(load)
 
         img = Label(self, image=render)
