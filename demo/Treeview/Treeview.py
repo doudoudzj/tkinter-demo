@@ -11,6 +11,17 @@ win.title("Treeview")
 # 空白首列是显示的，设置show属性为 headings 即可隐藏首列。
 tree = ttk.Treeview(win, height=18, show="headings")
 
+def info(event):
+    """详情"""
+    # event.widget.selection() #获取所选的项(可能是多项，所以要for循环)
+    # event.widget获取Treeview对象，调用selection获取选择所有选中的
+    slct = event.widget.selection()
+    for i in slct:
+        print(tree.item(i))
+        print(tree.item(i)["values"])
+        print(tree.item(i, "values"))
+
+
 # 列索引ID
 tree["columns"] = ("id", "name", "age", "heigh")
 
@@ -53,6 +64,10 @@ tree.insert("", 3, text="", values=("138", "马六", "23", "175"))
 vbar = ttk.Scrollbar(win, orient="vertical", command=tree.yview)
 tree.configure(yscrollcommand=vbar.set)
 
+# 选中事件
+tree.bind("<<TreeviewSelect>>", info)
+
+
 tree.grid(row=0, column=0, sticky="nswe")
 vbar.grid(row=0, column=1, sticky="ns")
 
@@ -67,6 +82,10 @@ btn_delete = tkinter.Button(head_frame, text="删除")
 btn_info.pack(side="left")
 btn_edit.pack(side="left")
 btn_delete.pack(side="left")
+
+
+
+
 
 # tree.pack()
 win.mainloop()
