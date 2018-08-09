@@ -1,4 +1,5 @@
-# -*- coding: cp936 -*-
+#!/usr/bin/env python3
+# -*- coding: UTF-8 -*-
 import turtle
 import math
 
