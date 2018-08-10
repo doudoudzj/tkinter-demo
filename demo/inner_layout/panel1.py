@@ -1,3 +1,8 @@
+#!/usr/bin/env python3
+# -*- coding: UTF-8 -*-
+# PanedWindow 控件
+"""创建3窗格"""
+
 from tkinter import *
 
 m1 = PanedWindow()
