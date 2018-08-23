@@ -6,7 +6,7 @@
     Button(根对象, [属性列表])
 '''
 
-from tkinter import *
+from tkinter import Tk, Button, Text, END
 
 root = Tk()
 root.title("标签Button")
