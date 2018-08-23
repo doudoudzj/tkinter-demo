@@ -11,7 +11,7 @@
     height  控件高度
 '''
 
-from tkinter import *
+from tkinter import Tk, Label
 
 mainWindow = Tk()
 mainWindow.title("标签Label")
@@ -28,6 +28,6 @@ l = Label(
     height=2)
 
 # 这里的side可以赋值为LEFT, RTGHT, TOP, BOTTOM
-l.pack(side=LEFT)
+l.pack(side='left')
 
 mainWindow.mainloop()
