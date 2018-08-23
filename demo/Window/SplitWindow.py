@@ -19,7 +19,7 @@ class MainFrame(Frame):
 
         self.master.rowconfigure(0, weight=1)
         self.master.columnconfigure(0, weight=1)
-        self.grid(sticky=W + E + N + S)
+        # self.grid(sticky=W + E + N + S)
 
         self.BottomLabel = Label(self.master, text='top', width=1, bg='Blue')
         self.BottomLabel.pack(side=TOP, expand=NO, fill=X)
