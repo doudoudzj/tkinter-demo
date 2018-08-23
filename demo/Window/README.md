@@ -19,12 +19,14 @@ window.geometry("200x200+100+100")
 window.resizable(False, False)
 # 窗口最大尺寸
 window.maxsize(1000, 400)
+# 窗口最小尺寸
+window.minsize(1000, 400)
 # 窗口背景色
 window["bg"] = "pink"
 # 窗口透明度, 值越小透明度越高
 window.attributes("-alpha", 0.8)
 # 设置窗口图标
-window.iconbitmap('spider_128px_1169260_easyicon.net.ico')
+window.iconbitmap('icon.ico')
 # 刷新窗口
 window.update()
 ```
