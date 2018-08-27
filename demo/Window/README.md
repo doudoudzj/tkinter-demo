@@ -23,12 +23,33 @@ window.maxsize(1000, 400)
 window.minsize(1000, 400)
 # 窗口背景色
 window["bg"] = "pink"
-# 窗口透明度, 值越小透明度越高
-window.attributes("-alpha", 0.8)
 # 设置窗口图标
 window.iconbitmap('icon.ico')
 # 刷新窗口
 window.update()
+```
+
+##### 设置窗口函数:
+attributes()
+
+可取字段类型: -alpha, -fullscreen, -modified, -notify, -titlepath, -topmost, or -transparent
+
+```python
+# 透明度, 值越小透明度越高
+window.attributes("-alpha", 0.8)
+# 全屏, 没有标题栏及上面的窗口控件: 隐藏、显示和最大化
+# 注意: 此时maxsize的设置必须是最大化的尺寸, 否则会报错
+window.attributes("-fullscreen", True)
+# 已编辑未保存状态, 关闭按钮提示已有内容修改
+window.attributes('-modified', True or 1)
+# 
+window.attributes('-notify', True or 1)
+# 标题栏的标题处可以选择地址
+window.attributes('-titlepath', True or 1)
+# 一直置顶显示
+window.attributes('-topmost', True or 1)
+# 无边框
+window.attributes('-transparent', True or 1)
 ```
 
 ##### 可调用函数：
