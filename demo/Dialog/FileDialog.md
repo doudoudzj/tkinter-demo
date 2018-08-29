@@ -6,11 +6,15 @@
 
 ##### 函数
 
-filedialog 模块提供了两个函数：
-
 ```python
+askdirectory
+askopenfile
+askopenfiles
 askopenfilename(**options) # 用于打开文件
+askopenfilenames
+asksaveasfile
 asksaveasfilename(**options) # 用于保存文件
+
 ```
 
 ##### 使用
