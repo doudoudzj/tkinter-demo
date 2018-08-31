@@ -3,80 +3,193 @@
 """FTP客户端GUI"""
 
 import os
+import time
 from ftplib import FTP
-from tkinter import (Button, Entry, IntVar, Label, Listbox, Menu, StringVar,
-                     Tk, filedialog)
+from tkinter import (Button, Entry, Frame, IntVar, Label, Listbox, Menu,
+                     StringVar, Tk, filedialog)
+from tkinter.ttk import Scrollbar, Treeview
 
 
 class ftp_client():
     def __init__(self):
         self.root = Tk()
         self.root.title("FTP客户端GUI")
-        self.root.geometry("500x400+500+100")
-        self.root.resizable(False, False)
+        self.root.geometry("700x500+500+100")
+        self.root.minsize(700, 500)
+        # self.root.resizable(False, False)
 
-        self.default_port = IntVar()
-        self.default_timeout = IntVar()
-        self.path = StringVar()
+        self.var_port = IntVar(value=3333)
+        self.var_address = StringVar(value="0.0.0.0")
+        self.default_timeout = IntVar(value=-999)
+        self.path_remote = StringVar()
+        self.path_local = StringVar()
         self.inputFileName = ""
 
-        self.entry_ip = Entry(self.root)
-        self.entry_port = Entry(self.root, textvariable=self.default_port)
-        self.entry_user = Entry(self.root)
-        self.entry_passwd = Entry(self.root, show="*")
-        self.listbox = Listbox(self.root)
+        self.filelist_local = None
+        self.filelist_remote = None
 
-        self.default_port.set(21)
-        self.default_timeout.set(-999)
-        self.path_ = " "
+        self.ftp_connect = FTP()
+        self.init_view()
+        self.root.mainloop()
 
-        self.ftp = FTP()
-        self.init_menu()
-        self.init_page()
-
-    def init_page(self):
+    def init_view(self):
         """界面"""
+        self.init_menu()
 
-        label_ip = Label(self.root, text="地址:")
+        self.head_box = Frame(self.root, relief="ridge", borderwidth=0)
+        self.head_box.pack(fill="x", expand=None, side="top", anchor="n")
+
+        self.btn_box = Frame(self.root, relief="ridge", borderwidth=0)
+        self.btn_box.pack(fill="x", expand=None, side="top", anchor="n")
+
+        self.content_box = Frame(
+            self.root, relief="ridge", borderwidth=0, bd=1)
+        self.content_box.pack(fill="both", expand=True)
+
+        self.remote_box = Frame(
+            self.content_box, relief="ridge", borderwidth=0)
+        self.remote_box.pack(fill="both", expand=True, side="right")
+
+        self.local_box = Frame(self.content_box, relief="ridge", borderwidth=0)
+        self.local_box.pack(fill="both", expand=True, side="left")
+
+        self.footer_box = Frame(self.root, relief="ridge", borderwidth=0, bd=1)
+        self.footer_box.pack(fill="x", expand=None, side="bottom", anchor="s")
+
+        self.init_header()
+        self.init_btns()
+        self.init_remote()
+        self.init_local()
+        self.init_footer()
+
+    def init_header(self):
+        """头部栏"""
+
+        label_ip = Label(self.head_box, text="地址:")
         label_ip.grid(row=0, column=0, sticky="e")
+        self.entry_ip = Entry(self.head_box, textvariable=self.var_address)
         self.entry_ip.grid(row=0, column=1, sticky="w")
 
-        label_port = Label(self.root, text="端口:")
+        label_port = Label(self.head_box, text="端口:")
         label_port.grid(row=1, column=0, sticky="e")
+        self.entry_port = Entry(self.head_box, textvariable=self.var_port)
         self.entry_port.grid(row=1, column=1, sticky="w")
 
-        label_user = Label(self.root, text="账号:")
+        label_user = Label(self.head_box, text="账号:")
         label_user.grid(row=2, column=0, sticky="e")
+        self.entry_user = Entry(self.head_box)
         self.entry_user.grid(row=2, column=1, sticky="w")
 
-        label_passwd = Label(self.root, text="密码:")
+        label_passwd = Label(self.head_box, text="密码:")
         label_passwd.grid(row=3, column=0, sticky="e")
+        self.entry_passwd = Entry(self.head_box, show="*")
         self.entry_passwd.grid(row=3, column=1, sticky="w")
 
-        button_connect = Button(self.root, text="连接", command=self.login)
-        button_connect.grid(row=4, column=1, sticky="w")
+    def init_btns(self):
 
-        button_disconnect = Button(self.root, text="断开", command=self.ftp_quit)
-        button_disconnect.grid(row=4, column=2)
+        button_connect = Button(
+            self.btn_box, text="连接", command=self.ftp_login)
+        button_connect.pack(side="left")
 
-        button_reflash = Button(self.root, text="刷新", command=self.reflash)
-        button_reflash.grid(row=4, column=3)
+        button_disconnect = Button(
+            self.btn_box, text="断开", command=self.ftp_quit)
+        button_disconnect.pack(side="left")
 
-        label_file_list = Label(self.root, text="文件列表:")
-        label_file_list.grid(row=5, column=1, sticky="w")
+        button_reflash = Button(
+            self.btn_box, text="刷新", command=self.flash_remote)
+        button_reflash.pack(side="left")
 
-        self.listbox.bind("<Double-Button-1>", self.click_db)
-        self.listbox.grid(row=6, column=1, sticky="w")
+    def init_remote(self):
+        """远程文件列表"""
 
-        Label(self.root, text="目标路径:").grid(row=7, column=0)
-        Entry(self.root, textvariable=self.path).grid(row=7, column=1)
+        btns = Frame(self.remote_box, relief="ridge", borderwidth=0)
+        btns.pack(fill="x", expand=False, side="top")
+        Label(btns, text="远程:").pack(fill="x", expand=None, side="left")
+        Entry(
+            btns, textvariable=self.path_remote).pack(
+                fill="x", expand=None, side="left")
         Button(
-            self.root, text="路径选择", command=self.selectPath).grid(
-                row=7, column=2)
+            btns, text="打开", command=self.select_path_local).pack(
+                fill="x", expand=None, side="left")
+        Button(btns, text="重连", command=self.ftp_login).pack(side="left")
+        Button(btns, text="断开", command=self.ftp_quit).pack(side="left")
+        Button(
+            btns, text="刷新", command=self.flash_remote).pack(
+                fill="x", expand=None, side="right")
 
-        Label(self.root, text="双击可下载文件!").grid(row=8, column=1, sticky="w")
+        file_list = Frame(self.remote_box, relief="ridge", borderwidth=0)
+        file_list.pack(fill="both", expand=True, side="top")
+        # Listbox
+        # self.filelist_remote = Listbox(self.remote_box)
+        # self.filelist_remote.bind("<Double-Button-1>", self.click_db)
+        # self.filelist_remote.pack(fill="both", expand=True, side="top")
 
-        self.root.mainloop()
+        tree = Treeview(file_list, show="headings")
+        # 列索引ID
+        tree["columns"] = ("pra", "id", "user", "group", "size", "date",
+                           "name")
+        # 表头设置
+        tree.heading("pra", text="权限")
+        tree.heading("id", text="ID")
+        tree.heading("user", text="用户")
+        tree.heading("group", text="组")
+        tree.heading("size", text="大小")
+        tree.heading("date", text="最后修改日期")
+        tree.heading("name", text="文件名")
+
+        tree.column("pra", width="100")
+        tree.column("id", width="50", anchor="center")
+        tree.column("user", width="50")
+        tree.column("group", width="50")
+        tree.column("size", width="50")
+        tree.column("date", width="50")
+        tree.column("name", width="50")
+
+        self.filelist_remote = tree
+
+        vbar = Scrollbar(file_list, orient="vertical", command=tree.yview)
+        tree.configure(yscrollcommand=vbar.set)
+        tree.grid(row=0, column=0, sticky="nswe")
+        vbar.grid(row=0, column=1, sticky="ns")
+
+    def init_local(self):
+        """本地文件列表"""
+
+        btns = Frame(self.local_box, relief="ridge", borderwidth=0)
+        btns.pack(fill="x", expand=False, side="top")
+        Label(btns, text="本地:").pack(fill="x", expand=None, side="left")
+        Entry(
+            btns, textvariable=self.path_local).pack(
+                fill="x", expand=None, side="left")
+        Button(
+            btns, text="打开", command=self.select_path_local).pack(
+                fill="x", expand=None, side="left")
+        Button(
+            btns, text="刷新", command=self.flash_local).pack(
+                fill="x", expand=None, side="right")
+
+        self.filelist_local = Listbox(self.local_box)
+        self.filelist_local.bind("<Double-Button-1>", self.click_db)
+        self.filelist_local.pack(fill="both", expand=True, side="top")
+
+    def init_footer(self):
+
+        Label(self.footer_box, text="欢迎使用").pack(side="left")
+        Label(self.footer_box, text="欢迎使用").pack(fill="x", side="left")
+        self.clock = Label(
+            self.footer_box,
+            text=time.strftime('%Y-%m-%d %H:%M:%S',
+                               time.localtime(time.time())))
+        self.clock.pack(side="right")
+        self.clock.after(1000, self.trickit)
+        self.trickit()
+
+    def trickit(self):
+        currentTime = time.strftime('%Y-%m-%d %H:%M:%S',
+                                    time.localtime(time.time()))
+        self.clock["text"] = currentTime
+        self.clock.update()
+        self.clock.after(1000, self.trickit)
 
     def init_menu(self):
 
@@ -102,42 +215,55 @@ class ftp_client():
         self.menubar.add_cascade(label="关于", menu=self.amenu)
         self.root["menu"] = self.menubar
 
-    def login(self):
-        self.ftp.connect(
-            self.entry_ip.get().strip(),
-            int(self.entry_port.get().strip()),
-            #  self.default_timeout
-        )
-        self.ftp.login(self.entry_user.get(), self.entry_passwd.get())
+    def ftp_login(self):
+        self.ftp_connect.connect(self.var_address.get().strip(),
+                                 int(self.entry_port.get().strip()))
+        self.ftp_connect.login(self.entry_user.get(), self.entry_passwd.get())
+        self.flash_remote()  # 加载列表
 
     def ftp_quit(self):
-        if self.ftp is not None:
-            self.ftp.quit()
+        if self.ftp_connect is not None:
+            self.ftp_connect.quit()
 
     def ftp_close(self):
-        if self.ftp is not None:
-            self.ftp.close()
+        if self.ftp_connect is not None:
+            self.ftp_connect.close()
 
-    def reflash(self):
-        filelist = self.ftp.nlst()
-        if self.listbox.size() > 0:
-            self.listbox.delete(0, "end")
+    def flash_remote(self):
+        file_list = []
+        self.ftp_connect.dir("", file_list.append)
+        for x in file_list:
+            i = x.split()  # 或者filename = x.split("\t")[列的起始值:列的终止值]
+            self.filelist_remote.insert(
+                "",
+                "end",
+                text="",
+                values=(i[0], i[1], i[2], i[3], i[4], i[5:8], i[-1]))
+
+    def flash_local(self):
+        filelist = self.ftp_connect.nlst()
+        if self.filelist_local.size() > 0:
+            self.filelist_local.delete(0, "end")
 
         for i in range(len(filelist)):
-            self.listbox.insert("end", filelist[i])
+            self.filelist_local.insert("end", filelist[i])
 
     def click_db(self, event):
         self.download()
 
     def download(self):
-        inputFileName = self.listbox.get(self.listbox.curselection())
-        file_handler = open(self.path.get() + "/" + inputFileName, "wb").write
-        self.ftp.retrbinary("RETR %s" % os.path.basename(inputFileName),
-                            file_handler, 1024)
+        inputFileName = self.filelist_remote.get(
+            self.filelist_remote.curselection())
+        file_handler = open(self.path_remote.get() + "/" + inputFileName,
+                            "wb").write
+        self.ftp_connect.retrbinary(
+            "RETR %s" % os.path.basename(inputFileName), file_handler, 1024)
 
-    def selectPath(self):
-        self.path_ = filedialog.askdirectory()
-        self.path.set(self.path_)
+    def select_path_local(self):
+        path = filedialog.askdirectory()
+        if os.path.isdir(path):
+            self.path_local.set(path)
+            self.path_remote.set(path)
 
     def quit(self):
         self.root.quit()
