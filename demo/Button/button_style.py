@@ -1,19 +1,18 @@
 #!/usr/bin/env python3
 # -*- coding: utf-8 -*-
-# LinkButton
-# 
-import tkinter
+"""按钮 demo"""
 
-from tkinter import ttk
+from tkinter import Button, Tk
 
-root = tkinter.Tk()
+root = Tk()
 
-style = ttk.Style()
-style.map("C.TButton",
-    foreground=[('pressed', 'red'), ('active', 'blue')],
-    background=[('pressed', '!disabled', 'black'), ('active', 'white')]
-    )
 
-colored_btn = ttk.Button(text="Test", style="C.TButton").pack()
+def callback():
+    return "aaa"
+
+
+Button(
+    root, text="按钮", fg="#555", bg="red", width=5, height=5,
+    command=callback).pack()
 
 root.mainloop()
