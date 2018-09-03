@@ -57,9 +57,19 @@ root.mainloop()
 -   add_command()
 
     说明：添加命令菜单项，参数command用来执行回调函数
+
     用途：
+
         1. 作为最终菜单项显示在菜单下拉列表内
         2. 也可以作为一级菜单项添加到根节点上，但是在窗口菜单栏里是不生效的！
+
+    参数：
+
+        -   accelerator，用于添加菜单的快捷键，该选项仅显示，并没有实现加速键的功能，添加功能需按键绑定
+        -   command，绑定事件
+        例如：
+        filemenu.add_command(label="打开", command=callback, accelerator='Ctrl+N')
+        root.bind_all("<Control-n>", lambda event: print('快捷键Ctrl+N'))
     注意：
         不能直接作为一级菜单显示在窗口菜单栏的根节点上
 

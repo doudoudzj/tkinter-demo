@@ -194,25 +194,42 @@ class ftp_client():
     def init_menu(self):
 
         self.menubar = Menu(self.root)
-        self.fmenu = Menu(self.menubar, tearoff=0)
+
+        self.menu_f = Menu(self.menubar, tearoff=0)
         for each in ["打开", "保存", "另存为", "关闭"]:
-            self.fmenu.add_command(label=each)
-        self.fmenu.add_separator()
-        self.fmenu.add_command(label="退出", command=self.quit)
-        self.menubar.add_cascade(label="文件", menu=self.fmenu)
+            self.menu_f.add_command(label=each)
+        self.menu_f.add_separator()
+        self.menu_f.add_command(label="退出", command=self.quit)
+        self.menubar.add_cascade(label="文件", menu=self.menu_f)
 
-        self.emenu = Menu(self.menubar, tearoff=0)
+        self.menu_e = Menu(self.menubar, tearoff=0)
         for each in ["复制", "剪切", "粘贴"]:
-            self.emenu.add_command(label=each)
-        self.menubar.add_cascade(label="编辑", menu=self.emenu)
+            self.menu_e.add_command(label=each)
+        self.menubar.add_cascade(label="编辑", menu=self.menu_e)
 
-        self.vmenu = Menu(self.menubar, tearoff=0)
-        self.vmenu.add_command(label="状态")
-        self.menubar.add_cascade(label="视图", menu=self.vmenu)
+        self.menu_v = Menu(self.menubar, tearoff=0)
+        self.menu_v.add_command(label="状态")
+        self.menubar.add_cascade(label="查看", menu=self.menu_v)
 
-        self.amenu = Menu(self.menubar, tearoff=0)
-        self.amenu.add_command(label="版本信息")
-        self.menubar.add_cascade(label="关于", menu=self.amenu)
+        self.t_menu = Menu(self.menubar)
+        self.t_menu.add_command(label="状态", accelerator='Alt+H')
+        self.menubar.add_cascade(label="传输", menu=self.t_menu)
+
+        self.menu_s = Menu(self.menubar)
+        self.menu_s.add_command(label="状态", accelerator='Ctrl+N')
+        self.menubar.add_cascade(label="服务器", menu=self.menu_s)
+
+        self.menu_b = Menu(self.menubar)
+        self.menu_b.add_command(label="状态")
+        self.menubar.add_cascade(label="书签", menu=self.menu_b)
+
+        self.menu_h = Menu(self.menubar, tearoff=1)
+        self.menu_h.add_separator()
+        self.menu_h.add_command(label="版本信息")
+        self.menu_h.add_separator()
+        self.menu_h.add_command(label="关于我们")
+        self.menubar.add_cascade(label="帮助", menu=self.menu_h)
+
         self.root["menu"] = self.menubar
 
     def ftp_login(self):
