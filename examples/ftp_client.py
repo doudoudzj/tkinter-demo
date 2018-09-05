@@ -17,6 +17,7 @@ class ftp_client():
         self.root.geometry("700x500+500+100")
         self.root.minsize(700, 500)
         # self.root.resizable(False, False)
+        self.root.update()
 
         self.var_port = IntVar(value=3333)
         self.var_address = StringVar(value="0.0.0.0")

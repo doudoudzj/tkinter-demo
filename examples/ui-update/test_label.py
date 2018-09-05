@@ -7,6 +7,7 @@ from tkinter import StringVar, IntVar
 root = Tk()
 root.title("界面更新示例-1")
 root.geometry("200x100+200+200")
+root.update()
 
 text = StringVar()
 text.set('默认值')

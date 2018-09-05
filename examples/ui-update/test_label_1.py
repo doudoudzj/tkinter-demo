@@ -102,6 +102,7 @@ def main():
     root = Tk()
     root.title("界面更新示例-2")
     root.geometry('250x150')
+    root.update()
     frame1 = Frame(root)
     frame1.pack(side=BOTTOM)
     sw = StopWatch(root)

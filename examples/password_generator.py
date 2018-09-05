@@ -13,6 +13,7 @@ class PasswordGenerator():
     def __init__(self):
         root = Tk()
         root.title('密码生成器')
+        root.update()
 
         self.root = root
         self.ps_length = IntVar(value=8)

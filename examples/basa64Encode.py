@@ -14,6 +14,7 @@ def main():
     root = tk.Tk()
     # root.resizable(False, False)
     root.title('编码解码')
+    root.update()
 
     # input框
     text = addInput(root)
