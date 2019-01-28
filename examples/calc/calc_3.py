@@ -2,7 +2,7 @@
 # -*- coding: UTF-8 -*-
 # Python实现计算器
 
-import tkinter  #导入tkinter模块
+import tkinter  # 导入tkinter模块
 
 root = tkinter.Tk()
 root.minsize(280, 505)
