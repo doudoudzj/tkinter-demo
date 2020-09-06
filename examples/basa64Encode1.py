@@ -1,3 +1,6 @@
+#!/usr/bin/env python3
+# -*- coding: UTF-8 -*-
+
 # https://www.cnblogs.com/binlmmhc/p/6165198.html
 
 import os

@@ -6,7 +6,7 @@
 python开发_thread_布朗运动
 https://www.cnblogs.com/hongten/p/hongten_python_thread_tkinter_brownian.html
 
-bug, 退出异常, 不能退出
+注意：bug, 退出异常, 不能退出
 下面我将给大家介绍有关python中thread来实现布朗运动的一个例子
 '''
 
@@ -16,7 +16,7 @@ import threading
 import time
 from tkinter import Tk, Canvas
 
-#画布大小
+# 画布大小
 WIDTH = 500
 HEIGHT = 500
 SIGMA = 50

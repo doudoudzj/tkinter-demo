@@ -1,5 +1,6 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
+# 简易发送邮件程序
 # https://blog.csdn.net/wangyiyan315/article/details/16846467
 
 from smtplib import *
@@ -27,12 +28,16 @@ class loginPage(object):
         self.pwdEntry = Entry(master, show='*')
         self.pwdEntry.grid(row=2, column=1, columnspan=2)
 
-        self.loginButton = Button(
-            master, text='Login', borderwidth=2, command=self.login)
+        self.loginButton = Button(master,
+                                  text='Login',
+                                  borderwidth=2,
+                                  command=self.login)
         self.loginButton.grid(row=3, column=1)
 
-        self.clearButton = Button(
-            master, text='Clear', borderwidth=2, command=self.clear)
+        self.clearButton = Button(master,
+                                  text='Clear',
+                                  borderwidth=2,
+                                  command=self.clear)
         self.clearButton.grid(row=3, column=2)
 
     def login(self):
@@ -98,12 +103,14 @@ class sendMail(object):
         self.sendText = Text(self.sendPage)
         self.sendText.grid(row=3, column=0, columnspan=2)
 
-        self.sendButton = Button(
-            self.sendPage, text='send', command=self.sendMail)
+        self.sendButton = Button(self.sendPage,
+                                 text='send',
+                                 command=self.sendMail)
         self.sendButton.grid(row=4, column=0)
 
-        self.newButton = Button(
-            self.sendPage, text='new mail', command=self.newMail)
+        self.newButton = Button(self.sendPage,
+                                text='new mail',
+                                command=self.newMail)
         self.newButton.grid(row=4, column=1)
 
     def getMailInfo(self):

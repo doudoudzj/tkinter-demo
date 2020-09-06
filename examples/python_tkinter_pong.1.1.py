@@ -1,3 +1,5 @@
+# -*- coding: UTF-8 -*-
+
 # python tkinter
 # python version 3.3.2
 # python开发_tkinter_小球完全弹性碰撞游戏_源码下载

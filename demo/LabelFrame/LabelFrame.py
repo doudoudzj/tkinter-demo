@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 # -*- coding: UTF-8 -*-
-# LabelFrame 
-# labelframe是一个简单的容器构件。其主要目的是作为一个间隔或复杂的窗口布局容器. 
+# LabelFrame
+# labelframe是一个简单的容器构件。其主要目的是作为一个间隔或复杂的窗口布局容器.
 # 如同本例中lab_1使用grid布局，而button部分不使用grid布局
 # 使用LabelFrame作为子容器，使用grid布局，内部的button则使用pack直接居左排列，
 
@@ -10,7 +10,8 @@ from tkinter import ttk
 
 win = tkinter.Tk()
 
-lab_1 = tkinter.Label(win, text="LabelFrame示例").grid(row=0, column=1, sticky="nswe")
+lab_1 = tkinter.Label(win, text="LabelFrame示例").grid(
+    row=0, column=1, sticky="nswe")
 
 head_frame = tkinter.LabelFrame(win, text="操作")
 head_frame.grid(row=1)

@@ -12,7 +12,7 @@ root.title('主窗口')
 top = Toplevel(root)
 top.title('子窗口')
 
-root.overrideredirect(True)
-# top.overrideredirect(True)
+# root.overrideredirect(True)
+top.overrideredirect(True)
 
 root.mainloop()

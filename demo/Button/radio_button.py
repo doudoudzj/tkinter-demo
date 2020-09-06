@@ -1,3 +1,5 @@
+# -*- coding: UTF-8 -*-
+
 from tkinter import *
 
 # This is a demo program that shows how to
