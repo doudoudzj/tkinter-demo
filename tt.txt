@@ -1,2 +1,0 @@
-安装新版Tcl/Tk可以支持中文，但是生成应用程序时找不到tk
-https://apple.stackexchange.com/questions/268880/warning-the-version-of-tcl-tk-8-5-9-in-use-may-be-unstable
